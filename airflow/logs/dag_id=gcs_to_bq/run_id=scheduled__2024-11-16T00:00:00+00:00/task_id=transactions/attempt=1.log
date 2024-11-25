@@ -1,0 +1,21 @@
+[2024-11-17T08:10:06.340+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-17T08:10:06.362+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_to_bq.transactions scheduled__2024-11-16T00:00:00+00:00 [queued]>
+[2024-11-17T08:10:06.371+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_to_bq.transactions scheduled__2024-11-16T00:00:00+00:00 [queued]>
+[2024-11-17T08:10:06.371+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-17T08:10:06.390+0000] {taskinstance.py:2330} INFO - Executing <Task(GCSToBigQueryOperator): transactions> on 2024-11-16 00:00:00+00:00
+[2024-11-17T08:10:06.397+0000] {standard_task_runner.py:63} INFO - Started process 1013 to run task
+[2024-11-17T08:10:06.408+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'gcs_to_bq', 'transactions', 'scheduled__2024-11-16T00:00:00+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/first.py', '--cfg-path', '/tmp/tmpmwia0mlp']
+[2024-11-17T08:10:06.411+0000] {standard_task_runner.py:91} INFO - Job 22: Subtask transactions
+[2024-11-17T08:10:06.470+0000] {task_command.py:426} INFO - Running <TaskInstance: gcs_to_bq.transactions scheduled__2024-11-16T00:00:00+00:00 [running]> on host portfolio.us-central1-c.c.golden-centaur-440309-a9.internal
+[2024-11-17T08:10:06.575+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='gcs_to_bq' AIRFLOW_CTX_TASK_ID='transactions' AIRFLOW_CTX_EXECUTION_DATE='2024-11-16T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-11-16T00:00:00+00:00'
+[2024-11-17T08:10:06.576+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-17T08:10:06.601+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-11-17T08:10:06.602+0000] {base.py:84} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-11-17T08:10:06.604+0000] {gcs_to_bigquery.py:380} INFO - Using existing BigQuery table for storing data...
+[2024-11-17T08:10:06.700+0000] {gcs_to_bigquery.py:384} INFO - Executing: {'load': {'autodetect': True, 'createDisposition': 'CREATE_IF_NEEDED', 'destinationTable': {'projectId': 'golden-centaur-440309-a9', 'datasetId': 'raw', 'tableId': 'product'}, 'sourceFormat': 'CSV', 'sourceUris': ['gs://ghif_portfolio/sales_data - product.csv'], 'writeDisposition': 'WRITE_TRUNCATE', 'ignoreUnknownValues': False, 'skipLeadingRows': None, 'fieldDelimiter': ',', 'quote': None, 'allowQuotedNewlines': False, 'encoding': 'UTF-8'}}
+[2024-11-17T08:10:06.701+0000] {bigquery.py:1660} INFO - Inserting job airflow_gcs_to_bq_transactions_2024_11_16T00_00_00_00_00_be68457b7f48e284af245cfc9b951333
+[2024-11-17T08:10:10.301+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-17T08:10:10.307+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=gcs_to_bq, task_id=transactions, run_id=scheduled__2024-11-16T00:00:00+00:00, execution_date=20241116T000000, start_date=20241117T081006, end_date=20241117T081010
+[2024-11-17T08:10:10.366+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-17T08:10:10.384+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-17T08:10:10.389+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

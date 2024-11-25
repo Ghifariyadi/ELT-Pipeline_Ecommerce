@@ -1,0 +1,41 @@
+[2024-11-12T07:34:25.470+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T07:34:25.482+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_to_bq.gcs_to_bq manual__2024-11-12T07:34:21.387500+00:00 [queued]>
+[2024-11-12T07:34:25.488+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_to_bq.gcs_to_bq manual__2024-11-12T07:34:21.387500+00:00 [queued]>
+[2024-11-12T07:34:25.488+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T07:34:25.503+0000] {taskinstance.py:2330} INFO - Executing <Task(GCSToBigQueryOperator): gcs_to_bq> on 2024-11-12 07:34:21.387500+00:00
+[2024-11-12T07:34:25.509+0000] {standard_task_runner.py:63} INFO - Started process 1087 to run task
+[2024-11-12T07:34:25.514+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'gcs_to_bq', 'gcs_to_bq', 'manual__2024-11-12T07:34:21.387500+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/first.py', '--cfg-path', '/tmp/tmphc25ayen']
+[2024-11-12T07:34:25.517+0000] {standard_task_runner.py:91} INFO - Job 13: Subtask gcs_to_bq
+[2024-11-12T07:34:25.564+0000] {task_command.py:426} INFO - Running <TaskInstance: gcs_to_bq.gcs_to_bq manual__2024-11-12T07:34:21.387500+00:00 [running]> on host portfolio.us-central1-c.c.golden-centaur-440309-a9.internal
+[2024-11-12T07:34:25.631+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='gcs_to_bq' AIRFLOW_CTX_TASK_ID='gcs_to_bq' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T07:34:21.387500+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T07:34:21.387500+00:00'
+[2024-11-12T07:34:25.632+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T07:34:25.650+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-11-12T07:34:25.652+0000] {base.py:84} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2024-11-12T07:34:25.653+0000] {gcs_to_bigquery.py:380} INFO - Using existing BigQuery table for storing data...
+[2024-11-12T07:34:25.705+0000] {gcs_to_bigquery.py:384} INFO - Executing: {'load': {'autodetect': True, 'createDisposition': 'CREATE_IF_NEEDED', 'destinationTable': {'projectId': 'golden-centaur-440309-a9', 'datasetId': 'raw', 'tableId': 'sales'}, 'sourceFormat': 'NEWLINE_DELIMITED_JSON', 'sourceUris': ['gs://ghif_portfolio/sales_data_example.csv'], 'writeDisposition': 'WRITE_TRUNCATE', 'ignoreUnknownValues': False}}
+[2024-11-12T07:34:25.706+0000] {bigquery.py:1660} INFO - Inserting job airflow_gcs_to_bq_gcs_to_bq_2024_11_12T07_34_21_387500_00_00_0a0fa11fcee107d62c4ce0fff774cdca
+[2024-11-12T07:34:27.211+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T07:34:27.212+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/ghifariyadi_muhammad/.venv/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ghifariyadi_muhammad/.venv/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ghifariyadi_muhammad/.venv/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ghifariyadi_muhammad/.venv/lib/python3.11/site-packages/airflow/providers/google/cloud/transfers/gcs_to_bigquery.py", line 445, in execute
+    job.result(timeout=self.result_timeout, retry=self.result_retry)
+  File "/home/ghifariyadi_muhammad/.venv/lib/python3.11/site-packages/google/cloud/bigquery/job/base.py", line 969, in result
+    return super(_AsyncJob, self).result(timeout=timeout, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ghifariyadi_muhammad/.venv/lib/python3.11/site-packages/google/api_core/future/polling.py", line 261, in result
+    raise self._exception
+google.api_core.exceptions.BadRequest: 400 Error while reading data, error message: Failed to parse JSON: Unexpected token; Parser terminated before end of string File: sales_data_example.csv; reason: invalid, location: sales_data_example.csv, message: Error while reading data, error message: Failed to parse JSON: Unexpected token; Parser terminated before end of string File: sales_data_example.csv
+[2024-11-12T07:34:27.218+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_to_bq, task_id=gcs_to_bq, run_id=manual__2024-11-12T07:34:21.387500+00:00, execution_date=20241112T073421, start_date=20241112T073425, end_date=20241112T073427
+[2024-11-12T07:34:27.229+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 13 for task gcs_to_bq (400 Error while reading data, error message: Failed to parse JSON: Unexpected token; Parser terminated before end of string File: sales_data_example.csv; reason: invalid, location: sales_data_example.csv, message: Error while reading data, error message: Failed to parse JSON: Unexpected token; Parser terminated before end of string File: sales_data_example.csv; 1087)
+[2024-11-12T07:34:27.253+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-12T07:34:27.267+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T07:34:27.267+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
