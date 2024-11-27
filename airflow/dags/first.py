@@ -62,10 +62,34 @@ user = GCSToBigQueryOperator(
         dag=dag
 )
 
+events = GCSToBigQueryOperator(
+        task_id='events',
+        bucket='ghif_portfolio',
+        gcp_conn_id='google_cloud_default',
+        source_objects = ['sales_data - product.csv'],
+        source_format="CSV",
+        create_disposition="CREATE_IF_NEEDED",
+        write_disposition="WRITE_TRUNCATE",
+        destination_project_dataset_table='golden-centaur-440309-a9.raw.product',
+        dag=dag
+)
+
 # Run dbt models using BashOperator
-dbt_run = BashOperator(
-        task_id='dbt_run',
-        bash_command="cd /home/ghifariyadi_muhammad/my_dbt_project && dbt run",
+#dbt_run = BashOperator(
+#        task_id='dbt_run',
+#        bash_command="cd /home/ghifariyadi_muhammad/my_dbt_project && dbt run",
+#    )
+
+# BashOperator untuk Conversion Funnel
+dbt_run_conversion_funnel = BashOperator(
+        task_id='dbt_run_conversion_funnel',
+        bash_command="cd /home/ghifariyadi_muhammad/my_dbt_project && dbt run --select conversion_funnel"
+)
+
+# BashOperator untuk Voucher Effectiveness
+dbt_run_voucher_effectiveness = BashOperator(
+        task_id='dbt_run_voucher_effectiveness',
+        bash_command="cd /home/ghifariyadi_muhammad/my_dbt_project && dbt run --select voucher_effectiveness"
     )
 
-product >> transactions >> user >> dbt_run
+product >> transactions >> user >> events >> dbt_run_conversion_funnel >> dbt_run_voucher_effectiveness 

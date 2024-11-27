@@ -1,0 +1,34 @@
+[2024-11-27T14:45:43.493+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-27T14:45:43.504+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_to_bq.dbt_run_voucher_effectiveness manual__2024-11-27T14:44:56.643514+00:00 [queued]>
+[2024-11-27T14:45:43.510+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_to_bq.dbt_run_voucher_effectiveness manual__2024-11-27T14:44:56.643514+00:00 [queued]>
+[2024-11-27T14:45:43.510+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-11-27T14:45:43.522+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run_voucher_effectiveness> on 2024-11-27 14:44:56.643514+00:00
+[2024-11-27T14:45:43.527+0000] {standard_task_runner.py:63} INFO - Started process 1134 to run task
+[2024-11-27T14:45:43.533+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'gcs_to_bq', 'dbt_run_voucher_effectiveness', 'manual__2024-11-27T14:44:56.643514+00:00', '--job-id', '53', '--raw', '--subdir', 'DAGS_FOLDER/first.py', '--cfg-path', '/tmp/tmpy4aprp9c']
+[2024-11-27T14:45:43.535+0000] {standard_task_runner.py:91} INFO - Job 53: Subtask dbt_run_voucher_effectiveness
+[2024-11-27T14:45:43.576+0000] {task_command.py:426} INFO - Running <TaskInstance: gcs_to_bq.dbt_run_voucher_effectiveness manual__2024-11-27T14:44:56.643514+00:00 [running]> on host portfolio.us-central1-c.c.golden-centaur-440309-a9.internal
+[2024-11-27T14:45:43.640+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='gcs_to_bq' AIRFLOW_CTX_TASK_ID='dbt_run_voucher_effectiveness' AIRFLOW_CTX_EXECUTION_DATE='2024-11-27T14:44:56.643514+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-27T14:44:56.643514+00:00'
+[2024-11-27T14:45:43.640+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-27T14:45:43.653+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-11-27T14:45:43.653+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /home/ghifariyadi_muhammad/my_dbt_project && dbt run --select voucher_effectiveness']
+[2024-11-27T14:45:43.664+0000] {subprocess.py:86} INFO - Output:
+[2024-11-27T14:45:45.225+0000] {subprocess.py:93} INFO - [0m14:45:45  Running with dbt=1.8.8
+[2024-11-27T14:45:46.414+0000] {subprocess.py:93} INFO - [0m14:45:46  Registered adapter: bigquery=1.8.3
+[2024-11-27T14:45:46.709+0000] {subprocess.py:93} INFO - [0m14:45:46  Found 3 models, 2 data tests, 479 macros
+[2024-11-27T14:45:46.712+0000] {subprocess.py:93} INFO - [0m14:45:46
+[2024-11-27T14:45:47.294+0000] {subprocess.py:93} INFO - [0m14:45:47  Concurrency: 1 threads (target='dev')
+[2024-11-27T14:45:47.294+0000] {subprocess.py:93} INFO - [0m14:45:47
+[2024-11-27T14:45:47.298+0000] {subprocess.py:93} INFO - [0m14:45:47  1 of 1 START sql table model raw.voucher_effectiveness ......................... [RUN]
+[2024-11-27T14:45:49.987+0000] {subprocess.py:93} INFO - [0m14:45:49  1 of 1 OK created sql table model raw.voucher_effectiveness .................... [[32mCREATE TABLE (1.0 rows, 41.0 Bytes processed)[0m in 2.69s]
+[2024-11-27T14:45:49.990+0000] {subprocess.py:93} INFO - [0m14:45:49
+[2024-11-27T14:45:49.990+0000] {subprocess.py:93} INFO - [0m14:45:49  Finished running 1 table model in 0 hours 0 minutes and 3.28 seconds (3.28s).
+[2024-11-27T14:45:50.031+0000] {subprocess.py:93} INFO - [0m14:45:50
+[2024-11-27T14:45:50.031+0000] {subprocess.py:93} INFO - [0m14:45:50  [32mCompleted successfully[0m
+[2024-11-27T14:45:50.032+0000] {subprocess.py:93} INFO - [0m14:45:50
+[2024-11-27T14:45:50.032+0000] {subprocess.py:93} INFO - [0m14:45:50  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[2024-11-27T14:45:50.689+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-11-27T14:45:50.690+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-27T14:45:50.710+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=gcs_to_bq, task_id=dbt_run_voucher_effectiveness, run_id=manual__2024-11-27T14:44:56.643514+00:00, execution_date=20241127T144456, start_date=20241127T144543, end_date=20241127T144550
+[2024-11-27T14:45:50.730+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-27T14:45:50.740+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-27T14:45:50.740+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
