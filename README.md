@@ -18,3 +18,4 @@ The data extraction process follows an ELT (Extract, Load, Transform) approach. 
 
 **Conversion Funnel**
 The conversion funnel model is already aligned with the overall goal of tracking user behavior, from viewing products to completing purchases. This part of the project ensures that we can analyze the steps users take within the platform and identify any potential bottlenecks or areas for improvement in the sales process.
+ 
